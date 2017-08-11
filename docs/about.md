@@ -111,6 +111,8 @@ get the 'AppModule', then the responsive 'AppComponent', put the 'AppComponent' 
 
 ### Coding project
 
+#### Import the dependencies and some types of typescript
+
 run `npm i --save jquery bootstrap` to install jquery and bootstrap libray, and then insert the address in 'angular-cli.json'
 
 ```"styles": [
@@ -125,9 +127,17 @@ run `npm i --save jquery bootstrap` to install jquery and bootstrap libray, and 
 
 run `npm i --save-dev @types/jquery @types/bootstrap` to install the types file, which let typescript to recognize jquery and bootstrap.
 
+#### Create the different components
+
 run 'ng g component navbar' to create the component of 'src/app/navbar', as well as the 'footer', 'search', 'carousel', 'starts', 'product'
 
-here, we will find the some components imported in the 'app.module.ts'
+here, we will find the some components imported in the 'app.module.ts'.
+
+At last, arrange the upon components to 'app.component.html' template file.
+
+create the contents in upon different components.
+
+
 
 
 
