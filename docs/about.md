@@ -129,7 +129,7 @@ run `npm i --save-dev @types/jquery @types/bootstrap` to install the types file,
 
 #### Create the different components
 
-run 'ng g component navbar' to create the component of 'src/app/navbar', as well as the 'footer', 'search', 'carousel', 'starts', 'product'
+run `ng g component navbar` to create the component of 'src/app/navbar', as well as the 'footer', 'search', 'carousel', 'starts', 'product'
 
 here, we will find the some components imported in the 'app.module.ts'.
 
@@ -138,8 +138,32 @@ At last, arrange the upon components to 'app.component.html' template file.
 create the contents in upon different components.
 
 
+##### Add router to this project
+
+Create the new component for different routes.
+
+Update 'app.module.ts', including
+
+```const routeConfig: Routes = [
+   {path: '', component: HomeComponent},
+   {path: 'product/:productTitle', component:ProductDetailComponent}
+ ];
+```
+
+and 
+```
+imports: [
+    BrowserModule,
+    RouterModule.forRoot(routeConfig)
+  ],
+```
 
 
+at last, update the template file of 'product.component.html'
+
+```
+<h4><a [routerLink]="['/product', product.title]">{{product.title}}</a></h4>
+```
 
 
 
