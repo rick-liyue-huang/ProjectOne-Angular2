@@ -111,7 +111,7 @@ get the 'AppModule', then the responsive 'AppComponent', put the 'AppComponent' 
 
 ### Coding project
 
-#### Import the dependencies and some types of typescript
+##### Import the dependencies and some types of typescript
 
 run `npm i --save jquery bootstrap` to install jquery and bootstrap libray, and then insert the address in 'angular-cli.json'
 
@@ -127,7 +127,7 @@ run `npm i --save jquery bootstrap` to install jquery and bootstrap libray, and 
 
 run `npm i --save-dev @types/jquery @types/bootstrap` to install the types file, which let typescript to recognize jquery and bootstrap.
 
-#### Create the different components
+##### Create the different components
 
 run `ng g component navbar` to create the component of 'src/app/navbar', as well as the 'footer', 'search', 'carousel', 'starts', 'product'
 
@@ -167,14 +167,51 @@ at last, update the template file of 'product.component.html'
 
 
 
+##### DI: dependency injection （IOC: Inversion of Control ）
+
+for example: 
+
+```
+var product = new Product();
+var shipCompany = createshipment();
+var address = new Address();
+var order = new Order();
+order.setAddress(address);
+createshipment(product, shipCompany, order);
+```
+
+angular will use the following code to implement
+
+Loose coupling
+
+```
+@NgModule({
+  providers: [ProducService]
+  // providers: [{provide: PrductService, useClass: ProductService}]
+  // can use the different service
+  // providers: [{provide: PrductService, useClass: AnotherProductService}]
+  
+  // providers: [{provide: ProductService, useFactory: () => {...}}]
+})
+
+export class AppModule {}
+
+@component({})
+
+export class ProductComponent {
+  product: Product;
+  constructor(productService: ProductService) {
+    this.product = productService.getProduct();
+  }
+}
+```
 
 
+add three methods: `getProducts()`, `getProduct(id)`, `getCommentsForProduct(id)` in service file 'ProductService'.
+ 
+and transfer the params 'ID' when routing.
 
-
-
-
-
-
+at last inject 'ProductService'.
 
 
 
