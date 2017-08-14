@@ -27,7 +27,7 @@ src/app: coding written here
 
 src/assets: store the static source
 
-src/environments : config dev or pro environment
+src/environments : config dev or production environment
 
 src/index.html web page start here
 
@@ -60,16 +60,23 @@ angular app need one module and component at least.
 
 
 
-```import { Component } from '@angular/core';
+```
+import { Component } from '@angular/core';
 
+//three necessary elements of component: decorator, template, controller
+
+//decorator
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
+  selector: 'app-root', // selector - occupy flag
+  templateUrl: './app.component.html', // template
   styleUrls: ['./app.component.css']
 })
+
+// controller
 export class AppComponent {
-  title = 'app';
+  title = 'Rick Huang';
 }
+
 ```
 
 2.
@@ -86,22 +93,29 @@ providers: all service coding here
 bootstrap: the main component declared here
 
 
-```import { BrowserModule } from '@angular/platform-browser';
-   import { NgModule } from '@angular/core';
-   
-   import { AppComponent } from './app.component';
-   
-   @NgModule({
-     declarations: [
-       AppComponent
-     ],
-     imports: [
-       BrowserModule
-     ],
-     providers: [],
-     bootstrap: [AppComponent]
-   })
-   export class AppModule { }
+```
+ import { BrowserModule } from '@angular/platform-browser';
+ import { NgModule } from '@angular/core';
+ import {FormsModule} from "@angular/forms";
+ import {HttpModule} from "@angular/http";
+ 
+ import { AppComponent } from './app.component';
+ 
+ // decorator
+ @NgModule({
+   declarations: [ // only component, direcitve, pipe
+     AppComponent
+   ],
+   imports: [  // dependent other modules
+     BrowserModule,
+     FormsModule,
+     HttpModule
+   ],
+   providers: [], // Dependency Injection: service
+   bootstrap: [AppComponent] // main component
+ })
+ 
+ export class AppModule { } // controller
 
 ```
 
@@ -128,6 +142,16 @@ run `npm i --save jquery bootstrap` to install jquery and bootstrap libray, and 
 run `npm i --save-dev @types/jquery @types/bootstrap` to install the types file, which let typescript to recognize jquery and bootstrap.
 
 ##### Create the different components
+
+run `npm i admin-lte --save` to install lib of 'adminLTE'.
+
+run `npm i --save font-awesome` to install font style.
+
+run `npm i --save ionicons` to run icon style.
+
+run `npm i --save jquery` and `npm i --save bootstrap` to add js libs
+
+find the source code of <body> tag from adminLTE template, and copy them to 'app.component.html' to produce the main page.
 
 run `ng g component navbar` to create the component of 'src/app/navbar', as well as the 'footer', 'search', 'carousel', 'starts', 'product'
 
@@ -213,6 +237,28 @@ and transfer the params 'ID' when routing.
 
 at last inject 'ProductService'.
 
+##### DataBind, Reactive programming and Pipe
+
+add reactive programming coding,
+
+```
+constructor(private productService: ProductService) {
+    this.titleFilter.valueChanges
+
+      // avoid typing too much
+      .debounceTime(500)
+      .subscribe(
+        value => this.keyword = value
+      );
+  }
+```
+
+run 
+```
+ng g pipe pipe/filter
+```
+
+to product the filter pipe.
 
 
 
