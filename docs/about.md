@@ -153,7 +153,7 @@ run `npm i --save jquery` and `npm i --save bootstrap` to add js libs
 
 find the source code of <body> tag from adminLTE template, and copy them to 'app.component.html' to produce the main page.
 
-run `ng g component navbar` to create the component of 'src/app/navbar', as well as the 'footer', 'search', 'carousel', 'starts', 'product'
+run `ng g component header` to create the component of 'src/app/header', as well as the 'footer', 'sidebar', 'content', 
 
 here, we will find the some components imported in the 'app.module.ts'.
 
