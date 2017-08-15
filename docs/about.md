@@ -143,6 +143,8 @@ run `npm i --save-dev @types/jquery @types/bootstrap` to install the types file,
 
 ##### Create the different components
 
+the whole project builds on library of 'admin-lte'.
+
 run `npm i admin-lte --save` to install lib of 'adminLTE'.
 
 run `npm i --save font-awesome` to install font style.
@@ -260,11 +262,14 @@ export class ProductComponent {
 ```
 
 
-add three methods: `getProducts()`, `getProduct(id)`, `getCommentsForProduct(id)` in service file 'ProductService'.
+add two methods: `getstocks()`, `getstock(id)`, and list of 'stocks' in service file 'stock/stock.component.ts' service file.
  
 and transfer the params 'ID' when routing.
 
-at last inject 'ProductService'.
+at last inject 'StockService'.
+
+the components of 'stock-form.component.ts' and 'stock-manage.component.ts' will inject the upon service. 
+
 
 ##### DataBind, Reactive programming and Pipe
 
