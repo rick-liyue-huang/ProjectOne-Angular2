@@ -11,6 +11,16 @@ import { ContentComponent } from './content/content.component';
 import { MenuComponent } from './menu/menu.component';
 import { StockManageComponent } from './stock/stock-manage/stock-manage.component';
 import { StarsComponent } from './stars/stars.component';
+import {RouterModule, Routes} from "@angular/router";
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { StockFormComponent } from './stock/stock-form/stock-form.component';
+
+const routeConfig: Routes = [
+  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  {path: 'stock', component: StockManageComponent},
+  {path: 'dashboard', component: DashboardComponent},
+  {path: 'stock/:id', component: StockFormComponent}
+];
 
 // decorator
 @NgModule({
@@ -22,15 +32,59 @@ import { StarsComponent } from './stars/stars.component';
     ContentComponent,
     MenuComponent,
     StockManageComponent,
-    StarsComponent
+    StarsComponent,
+    DashboardComponent,
+    StockFormComponent
   ],
   imports: [  // dependent other modules
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(routeConfig)
   ],
   providers: [], // Dependency Injection: service
   bootstrap: [AppComponent] // main component
 })
 
 export class AppModule { } // controller
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

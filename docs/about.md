@@ -168,27 +168,56 @@ Create the new component for different routes.
 
 Update 'app.module.ts', including
 
-```const routeConfig: Routes = [
-   {path: '', component: HomeComponent},
-   {path: 'product/:productTitle', component:ProductDetailComponent}
- ];
+```
+const routeConfig: Routes = [
+  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  {path: 'stock', component: StockManageComponent},
+  {path: 'dashboard', component: DashboardComponent},
+  {path: 'stock/:id', component: StockFormComponent}
+];
 ```
 
-and 
+and update 
 ```
-imports: [
+imports: [  // dependent other modules
     BrowserModule,
+    FormsModule,
+    HttpModule,
     RouterModule.forRoot(routeConfig)
   ],
 ```
 
 
-at last, update the template file of 'product.component.html'
+and then, update the template file of 'menu.component.html'
 
 ```
-<h4><a [routerLink]="['/product', product.title]">{{product.title}}</a></h4>
+<li *ngFor="let menu of menus" [class.active]="currentMenuId == menu.id" >
+        <a href="javascript:;" (click)="nav(menu)">
+          <i class="fa fa-link"></i>
+          <span>{{menu.name}}</span>
+        </a>
+      </li>
 ```
+get the data from 'menu.component.html'.
 
+One more bat very important thing is about the the router method to get the router.event
+
+```
+constructor(public router: Router) {
+    router.events
+      .filter(event => event instanceof NavigationEnd)
+      .subscribe((event: NavigationEnd) => {
+        if (event.url == '/dashboard') {
+          this.pageTitle = 'HomePage';
+          this.pageDesc = 'This is homepage';
+        } else if(event.url == '/stock') {
+          this.pageTitle = 'Stock Management';
+          this.pageDesc = 'Deal with this stock';
+        }
+      });
+  }
+
+``` 
 
 
 ##### DI: dependency injection （IOC: Inversion of Control ）

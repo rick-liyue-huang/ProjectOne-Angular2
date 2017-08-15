@@ -1,6 +1,6 @@
 <div class="box">
   <div class="box-header with-border">
-    <a class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span>Create</a>
+    <a class="btn btn-success btn-sm" (click)="create()"><span class="glyphicon glyphicon-plus"></span>Create</a>
 
     <div class="box-tools">
       <div class="input-group input-group-sm" style="width: 150px; margin-top: 8px">
@@ -21,6 +21,7 @@
         <th>Stock Name</th>
         <th>Stock Price</th>
         <th>Stock Rating</th>
+        <!--<th>sd</th>-->
         <th>Operate</th>
       </tr>
       <tr *ngFor="let stock of stocks; let i = index;">
@@ -32,9 +33,13 @@
         <!-- this is the imported property of 'rating'-->
         <td><app-stars [rating]="stock.rating"></app-stars></td>
 
+        <!--<div class="progress progress-xs">-->
+          <!--<div class="progress-bar progress-bar-danger" style="width: {{stock.percent}}"></div>-->
+        <!--</div>-->
+
 
         <td>
-          <a class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span>Modify</a>
+          <a class="btn btn-primary btn-xs" (click)="update(stock)" ><span class="glyphicon glyphicon-pencil"></span>Modify</a>
           <a class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>Delete</a>
         </td>
       </tr>
