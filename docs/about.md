@@ -302,6 +302,76 @@ at last, type
 
 to let filter works.
 
+##### Communication between components and Hooks
+
+add @Input() and @Output() in stars.component.ts. 
+
+bring the @Output property 'ratingChange' to the 'stock-form.component.ts'. 
+
+add '[(rating)]' to complete the bidirectional-bind. 
+
+put some repeated coding in ngOnChange() {} hook
+
+```
+ngOnChanges(changes: SimpleChanges) {
+    this.stars = [];
+
+    for (let i = 1; i <= 5; i++) {
+      this.stars.push(i > this.rating);
+    }
+  }
+```
+
+Notice:
+
+1.the parent component and child component should avoid to couple directly, they should use @Output and @Input
+2.the component can emit some self-defined event by @Output, and these event can bring any its data.
+3.can use the intermediate component to connect some non-parent-child components
+4.the parent component can projection some template fragment to its child component by <ng-content>
+5.each angular component has has one group of hooks.
+6.angular has ngDoCheck() hook which is very frequent called, so care it.
+7.we can mark some branch in the component tree to exclude the ngDoCheck.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
