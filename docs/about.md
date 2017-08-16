@@ -273,27 +273,34 @@ the components of 'stock-form.component.ts' and 'stock-manage.component.ts' will
 
 ##### DataBind, Reactive programming and Pipe
 
-add reactive programming coding,
+Add reactive programming coding in 'stock-manage.component.ts',
 
 ```
-constructor(private productService: ProductService) {
-    this.titleFilter.valueChanges
-
-      // avoid typing too much
+this.nameFilter.valueChanges
       .debounceTime(500)
-      .subscribe(
-        value => this.keyword = value
-      );
-  }
+      .subscribe(value => this.keywork = value);
+
 ```
+type 
+```
+<input [formControl]="nameFilter"  type="text" name="table_search" class="form-control pull-right" placeholder="Stock Name">
+```
+to add rxjs to input.
 
 run 
 ```
-ng g pipe pipe/filter
+ng g pipe stock/stockFilter
 ```
 
 to product the filter pipe.
 
+at last, type
+
+```
+<tr *ngFor="let stock of stocks | stockFilter: 'name' : keywork; let i = index;">
+```
+
+to let filter works.
 
 
 
