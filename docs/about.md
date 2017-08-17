@@ -333,6 +333,14 @@ Notice:
 7.we can mark some branch in the component tree to exclude the ngDoCheck.
  
 
+##### Update the form by Reactived Form
+
+Firstly, add the 'formModel: FormGroup' to construct the form data in 'stock-form.component.ts',
+and then, bind these model to the form in 'stock-form.component.html',
+here I also create the self-defined validator to deal with 'categories:FormArray' input.
+more details alreay put during the codes by comments in 'stock-form.component.ts' and 'stock-form.component.html'.
+
+
 
 
 

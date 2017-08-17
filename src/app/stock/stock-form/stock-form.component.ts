@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Stock, StockService} from '../stock.service';
 import {ActivatedRoute, Router} from "@angular/router";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-stock-form',
@@ -9,6 +10,18 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class StockFormComponent implements OnInit {
 
+
+  // here will deal with the form in reactived form
+
+  // declare the whole form
+  formModel: FormGroup;
+
+  categories = ["IT", "Elec", "Finance"]; // used to produce three checkboxes and ngFor them
+
+
+
+
+//
   private stock: Stock;
 
   constructor(private routeInfo: ActivatedRoute, private stockService: StockService, private router: Router) {}
@@ -19,6 +32,48 @@ export class StockFormComponent implements OnInit {
 
     this.stock = this.stockService.getStock(stockId);
 
+  //  create the form data constructure
+    let fb = new FormBuilder();
+
+    // fb.group means the whole form
+    this.formModel = fb.group(
+
+      {
+        //define the initial name, and validators required and minlength, and bind to html by formControlName="name"
+        name: [this.stock.name, [Validators.required, Validators.minLength(3)]],
+        price: [this.stock.price, Validators.required],
+        desc: [this.stock.desc],
+
+        // match with stock.service.ts, categories: Array<string>)
+        categories: fb.array([  // using fb.array to build the array data structure
+          new FormControl(this.stock.categories.indexOf(this.categories[0]) != -1), // used to confirm whether the selected stock has the dedicated category
+          new FormControl(this.stock.categories.indexOf(this.categories[1]) != -1),
+          new FormControl(this.stock.categories.indexOf(this.categories[2]) != -1)
+        //  the return is boolean value, if true, will checked.
+        ], this.categoriesSelectValidator)
+      }
+    );
+
+
+  }
+
+  // define one validator to confirm whether none checkbox is checked
+  categoriesSelectValidator(control: FormArray) {
+
+    var valid = false;
+
+    control.controls.forEach(control => {
+
+      if (control.value) {
+        valid = true;
+      }
+    });
+
+    if (valid) {
+      return null;
+    } else {
+      return {categoriesLength: true};
+    }
 
   }
 
@@ -28,10 +83,63 @@ export class StockFormComponent implements OnInit {
 
   save() {
     console.log(this.stock.rating);
-    this.router.navigateByUrl('/stock');
+
+    // assign the 'stock.rating' value from 'stock.service.ts' to this.formModel.value.rating,
+    this.formModel.value.rating = this.stock.rating;
+
+    // transfer the boolean array to string array, because the stock info categroy is string type array
+    var index = 0, stringCategories = [];
+    for (var i = 0; i < 3; i++) {
+      if (this.formModel.value.categories[i]) {
+        stringCategories[index++] = this.categories[i]
+      }
+    }
+
+    this.formModel.value.categories = stringCategories;
+
+    // check the form name input value
+    console.log(this.formModel.value);
+
+    // this.router.navigateByUrl('/stock');
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
