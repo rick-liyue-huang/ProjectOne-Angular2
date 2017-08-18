@@ -2,7 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var ws_1 = require("ws");
+var path = require("path");
+// run 'npm build' to create the 'dist' folder, and copy all the files under 'dist' to 'ProjectOne-Angular2/server/client' folder
 var app = express();
+// tell 'app' that, all the static source is in '../client' folder
+app.use('/', express.static(path.join(__dirname, '..', 'client')));
 app.get('/api/stock', function (req, res) {
     var result = stocks;
     var params = req.query;

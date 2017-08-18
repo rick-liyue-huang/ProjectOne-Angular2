@@ -2,8 +2,15 @@
 
 import * as express from 'express';
 import {Server} from "ws";
+import * as path from 'path';
+
+// run 'npm build' to create the 'dist' folder, and copy all the files under 'dist' to 'ProjectOne-Angular2/server/client' folder
+
 
 const app = express();
+
+// tell 'app' that, all the static source is in '../client' folder
+app.use('/', express.static(path.join(__dirname, '..', 'client')));
 
 app.get('/api/stock', (req, res) => {
 
