@@ -1,35 +1,22 @@
-# ProjectOneAngular2
+### ProjectOneAngular2
 
-## Project Introduction
+#### Project Introduction
 
-In this project I use Angular2 to create one 'Stock Management' web signle page app, which composes the router, DI,  and
+In this project I use Angular2 to create one 'Stock Management' web signle page app, which composes the router, DI,
+Rxjs, data binding and other angular2 skills. I get data from the server end created by express.js, and use http server and
+websocket server to provide the components data. In the end, by typing 'npm build' to create the production environment codes in
+directory of '/dist/'. and run them in the server environment.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.0.
+#### Project Run
 
-## Development server
+The whole project named 'ProjectOne-Angular2', is created by 'angular-cli', and the project includes '/server' and '/client'
+directories, which are created by express.js and angular, respectively. In order to run the project in development environment,
+firstly to type `node build/stock_server.js` under '/ProjectOne-Angular2/server/' directory, and then type `npm start` under 'ProjectOne-Angular2/client' directory, the app will run
+at at address 'http://localhost:4200'.
+If run the project need to firstly type `npm build` under 'ProjectOne-Angular2/client' directory, and produce the directory of '/dist', and copy the files of '/dist'
+to '/ProjectOne-Angular2/server/client/' directory, and just type `node build/stock_server.js`, the app will run directly in address 'http://localhost:3000'.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-## Important!!! Read More?
+#### Important!!! Read More?
 More thing about this project is written in 'docs/about.md'.
