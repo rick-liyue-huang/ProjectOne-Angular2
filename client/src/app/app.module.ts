@@ -17,6 +17,7 @@ import { StockFormComponent } from './stock/stock-form/stock-form.component';
 import {StockService} from "./stock/stock.service";
 import { StockFilterPipe } from './stock/stock-filter.pipe';
 
+
 const routeConfig: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'stock', component: StockManageComponent},
