@@ -21,11 +21,11 @@
         <th>Stock Name</th>
         <th>Stock Price</th>
         <th>Stock Rating</th>
-        <th>Stock PercentRating</th>
         <th>Operate</th>
       </tr>
 
-      <tr *ngFor="let stock of stocks | stockFilter: 'name' : keywordwork; let i = index;">
+      <!--<tr *ngFor="let stock of stocks | stockFilter: 'name' : keywordwork; let i = index;">-->
+      <tr *ngFor="let stock of stocks | async | stockFilter: 'name' : keywordwork ; let i = index; ">
         <td>{{i + 1}}</td>
         <td>{{stock.name}}</td>
         <td>{{stock.price}}</td>
@@ -34,11 +34,11 @@
         <!-- this is the imported property of 'rating'-->
         <td><app-stars [rating]="stock.rating"></app-stars></td>
 
-        <td>
-          <div class="progress progress-xs">
-            <div class="progress-bar progress-bar-yellow" [style.width]=stock.percent></div>
-          </div>
-        </td>
+        <!--<td>-->
+          <!--<div class="progress progress-xs">-->
+            <!--<div class="progress-bar progress-bar-yellow" [style.width]=stock.percent></div>-->
+          <!--</div>-->
+        <!--</td>-->
 
         <td>
           <a class="btn btn-primary btn-xs" (click)="update(stock)" ><span class="glyphicon glyphicon-pencil"></span>Modify</a>

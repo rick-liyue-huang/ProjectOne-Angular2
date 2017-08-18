@@ -16,13 +16,12 @@ export class StockFormComponent implements OnInit {
   // declare the whole form
   formModel: FormGroup;
 
+  stock: Stock = new Stock(0, "", 0, 0, "", []);
+
   categories = ["IT", "Elec", "Finance"]; // used to produce three checkboxes and ngFor them
 
-
-
-
 //
-  private stock: Stock;
+
 
   constructor(private routeInfo: ActivatedRoute, private stockService: StockService, private router: Router) {}
 
@@ -30,7 +29,57 @@ export class StockFormComponent implements OnInit {
 
     let stockId = this.routeInfo.snapshot.params["id"];
 
-    this.stock = this.stockService.getStock(stockId);
+
+    //  create the form data constructure
+    let fb = new FormBuilder();
+
+    // fb.group means the whole form
+    this.formModel = fb.group(
+
+      {
+        //define the initial name, and validators required and minlength, and bind to html by formControlName="name"
+        name: ['', [Validators.required, Validators.minLength(3)]],
+        price: ['', Validators.required],
+        desc: [''],
+
+        // match with stock.service.ts, categories: Array<string>)
+        categories: fb.array([  // using fb.array to build the array data structure
+          new FormControl(false), // used to confirm whether the selected stock has the dedicated category
+          new FormControl(false),
+          new FormControl(false)
+          //  the return is boolean value, if true, will checked.
+        ], this.categoriesSelectValidator)
+      }
+    );
+
+
+    // this.stock = this.stockService.getStock(stockId);
+
+  //  here need to update code to get the data from server.ts
+    this.stockService.getStock(stockId).subscribe(
+        data => {
+          this.stock = data;
+
+          this.formModel.reset({
+            name: data.name,
+            price: data.price,
+            desc: data.desc,
+
+            categories: [
+              data.categories.indexOf(this.categories[0]) != -1,
+              data.categories.indexOf(this.categories[1]) != -1,
+              data.categories.indexOf(this.categories[2]) != -1
+            ]
+          });
+
+
+        }  // this is the async callback, so maybe can not get the data right now
+
+
+
+    );
+
+    /*
 
   //  create the form data constructure
     let fb = new FormBuilder();
@@ -54,7 +103,7 @@ export class StockFormComponent implements OnInit {
       }
     );
 
-
+  */
   }
 
   // define one validator to confirm whether none checkbox is checked

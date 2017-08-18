@@ -16,6 +16,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { StockFormComponent } from './stock/stock-form/stock-form.component';
 import {StockService} from "./stock/stock.service";
 import { StockFilterPipe } from './stock/stock-filter.pipe';
+import {SocketService} from "./header/socket.service";
 
 
 const routeConfig: Routes = [
@@ -47,7 +48,7 @@ const routeConfig: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routeConfig)
   ],
-  providers: [StockService], // Dependency Injection: service
+  providers: [StockService, SocketService], // Dependency Injection: service
   bootstrap: [AppComponent] // main component
 })
 

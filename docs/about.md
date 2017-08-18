@@ -338,8 +338,17 @@ Notice:
 Firstly, add the 'formModel: FormGroup' to construct the form data in 'stock-form.component.ts',
 and then, bind these model to the form in 'stock-form.component.html',
 here I also create the self-defined validator to deal with 'categories:FormArray' input.
-more details alreay put during the codes by comments in 'stock-form.component.ts' and 'stock-form.component.html'.
+more details already put during the codes by comments in 'stock-form.component.ts' and 'stock-form.component.html'.
 
+
+##### Create Server
+
+Firstly, create the server by express.js lib,
+secondly, update the 'stock.service.ts' file,
+here, I use the http server to get the sockets infrom server,
+and then render on the front end.
+
+and, I use socket server to deal with the message.
 
 
 
